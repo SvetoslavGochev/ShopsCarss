@@ -36,7 +36,7 @@
             //}
 
 
-            return RedirectToAction(nameof(CarsController.All));
+            return RedirectToAction(nameof(CarsController.All), "Cars");
         }
         [HttpGet]
         public IActionResult Register()
