@@ -16,7 +16,7 @@ namespace ShopsCarss
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using AutoMapper;
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -40,6 +40,8 @@ namespace ShopsCarss
             services.AddControllersWithViews();
 
             services.AddTransient<IDbServices, DbServices>();
+            services.AddAutoMapper(typeof(Startup));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
