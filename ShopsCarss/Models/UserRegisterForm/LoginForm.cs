@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class UserLoginForm
+    public class LoginForm
     {
         public string Username { get; init; }
         public string Password { get; init; }

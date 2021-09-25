@@ -7,7 +7,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using static Data.Constants.Constants;
     public class UserServices: IUserServices
     {
         private readonly ApplicationDbContext data;
@@ -18,20 +18,25 @@
         }
 
 
-        public async Task<int> Create(string Username, string Email, string Password, bool IsMechanic)
+        public async Task Create(RegisterForm form)
         {
+            if (this.data.Userss.Any(u => u.Username == form.Username))
+            {
+                return ;
+            }
+
             var user = new User
             {
-                Username = Username,
-                Email = Email,
-                Password = Password,
-                IsMechanic = IsMechanic
+                Username = form.Username,
+                Email = form.Email,
+                Password = form.Password,
+                IsMechanic = form.IsMechanic == Mechanic
             };
 
-            await this.data.AddAsync(user);
+            await this.data.Userss.AddAsync(user);
             await this.data.SaveChangesAsync();
 
-            return user.Id;
+           
         }
     }
 }

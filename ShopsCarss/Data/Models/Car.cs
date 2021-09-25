@@ -9,9 +9,7 @@
     public class Car
     {
   
-
         public int Id { get; init; }
-        //public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
         public string Model { get; set; }

@@ -17,6 +17,10 @@ namespace ShopsCarss
     using System.Linq;
     using System.Threading.Tasks;
     using AutoMapper;
+    using ShopsCarss.Services.User;
+    using ShopsCarss.Services.Cars;
+    using ShopsCarss.Services.Issues;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -40,6 +44,10 @@ namespace ShopsCarss
             services.AddControllersWithViews();
 
             services.AddTransient<IDbServices, DbServices>();
+            services.AddTransient<IUserServices, UserServices>();
+            services.AddTransient<ICarServices, CarServices>();
+            services.AddTransient<IIssuesServices, IssuesServices>();
+           
             services.AddAutoMapper(typeof(Startup));
 
         }

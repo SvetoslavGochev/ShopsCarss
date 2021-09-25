@@ -8,16 +8,20 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Security.Claims;
     using System.Threading.Tasks;
     using static Data.Constants.Constants;
+    using static Infrastructure.ClaimsPrincipalExtensions;
 
     public class UsersController : Controller
     {
         private readonly IDbServices Db;
+        private readonly IUserServices user;
 
-        public UsersController(IDbServices db)
+        public UsersController(IDbServices db, IUserServices user)
         {
             this.Db = db;
+            this.user = user;
         }
 
         [HttpGet]
@@ -25,15 +29,46 @@
         {
 
             return View();
-        }  
-        
-        [HttpPost]
-        public async Task<IActionResult> Login(UserLoginForm user)
-        {
-            //if (true)//userId
-            //{
+        }
 
-            //}
+        //[HttpPost]
+        //public async Task<IActionResult> Login(UserLoginForm user)
+        //{
+        //    //if (true)//userId
+        //    //{
+
+        //    //}
+        //    var a = user.Username;
+
+
+        //    return RedirectToAction(nameof(CarsController.All), "Cars");
+        //}
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginForm form)
+        {
+
+            var userId = this.Db.DataBase()
+                .Userss
+                .Where(x => x.Username == form.Username && x.Password == form.Password)
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
+
+            var ID = this.Db.DataBase()
+                .Users
+                .Where(x => x.UserName == form.Username)
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
+
+            if (userId == null)
+            {
+                return BadRequest();
+            }
+
+         
+
+
 
 
             return RedirectToAction(nameof(CarsController.All), "Cars");
@@ -44,24 +79,31 @@
 
             return View();
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterForm form)
         {
-
-
-            var user = new User
+            try
             {
-                Username = form.Username,
-                Email = form.Email,
-                Password = form.Password,
-                IsMechanic = form.IsMechanic
-            };
+               await this.user.Create(form);
+            }
+            catch (Exception)
+            {
 
-            await this.Db.DataBase().AddAsync(user);
-            await this.Db.DataBase().SaveChangesAsync();
+                return BadRequest();
+            }
+            //var user = new User
+            //{
+            //    Username = form.Username,
+            //    Email = form.Email,
+            //    Password = form.Password,
+            //    IsMechanic = form.IsMechanic
+            //};
 
-            TempData[GlobalMessage] = "Addet User";
+            //await this.Db.DataBase().AddAsync(user);
+            //await this.Db.DataBase().SaveChangesAsync();
+
+            TempData[GlobalMessage] = "Addet new user";
 
             return RedirectToAction(nameof(Login));
         }

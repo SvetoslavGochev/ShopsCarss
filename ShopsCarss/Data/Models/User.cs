@@ -13,7 +13,7 @@ namespace ShopsCarss.Data.Models
     {
         [Required]
         public int Id { get; init; }
-
+      
         [Required]
         public string Username { get; set; }
 

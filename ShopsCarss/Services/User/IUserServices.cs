@@ -1,5 +1,6 @@
 ﻿namespace ShopsCarss.Services
 {
+    using ShopsCarss.Models.UserRegisterForm;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,7 +9,7 @@
     public interface IUserServices
     {
 
-        Task<int> Create(string Username, string Email, string Password, bool IsMechanic);
+        Task Create(RegisterForm form);
 
 
     }

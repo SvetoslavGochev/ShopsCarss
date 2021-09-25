@@ -15,6 +15,6 @@
 
         public string ConfirmPassword { get; set; }
 
-        public bool IsMechanic { get; set; }
+        public string IsMechanic { get; set; }
     }
 }
