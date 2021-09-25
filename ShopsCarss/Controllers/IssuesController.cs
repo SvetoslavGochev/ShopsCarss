@@ -1,6 +1,7 @@
 ﻿namespace ShopsCarss.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using ShopsCarss.Models.Issues;
     using ShopsCarss.Services.Issues;
     using System;
     using System.Collections.Generic;
@@ -37,9 +38,10 @@
             //});
         }
         [HttpPost]
-        public async Task<IActionResult> Add(int CarId, string description)
+        //public async Task<IActionResult> Add(int CarId, string description)
+        public async Task<IActionResult> Add(AddissueFormModel model)
         {
-            await this.issues.Create(CarId, description);
+            await this.issues.Create(model);
 
             return RedirectToAction();
         }
