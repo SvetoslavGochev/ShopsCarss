@@ -54,7 +54,15 @@
         {
             await this.issues.Fix(model);
 
-            return RedirectToAction(nameof(CarIssues));
+            return Redirect($"{nameof(CarIssues)}?carId={model.CarId}");
+        } 
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(FixIssueModel model)
+        {
+            await this.issues.Delete(model);
+
+            return Redirect($"{nameof(CarIssues)}?carId={model.CarId}");
         }
     }
 }

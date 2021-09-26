@@ -1,7 +1,7 @@
 ﻿namespace ShopsCarss.Services.Issues
 {
+    using Microsoft.AspNetCore.Mvc;
     using ShopsCarss.Models.Issues;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IIssuesServices
@@ -11,5 +11,7 @@
         Task Create(AddissueFormModel model);
 
         Task Fix(FixIssueModel model);
+
+        Task Delete(FixIssueModel model);
     }
 }

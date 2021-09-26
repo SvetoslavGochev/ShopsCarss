@@ -1,5 +1,6 @@
 ﻿namespace ShopsCarss.Services.Issues
 {
+    using Microsoft.AspNetCore.Mvc;
     using ShopsCarss.Data;
     using ShopsCarss.Data.Models;
     using ShopsCarss.Models.Issues;
@@ -64,18 +65,24 @@
                 .SaveChangesAsync();
         }
 
+        public async Task Delete(FixIssueModel model)
+        {
+            var issue = this.data
+               .Issues
+               .Find(model.IssueId);
+
+
+           this.data.Issues.Remove(issue);
+
+            await this.data.SaveChangesAsync();
+
+        }
+
         public async Task Fix(FixIssueModel model)
         {
-            var car = this.data
-                .Cars
-                .Where(c => c.Id == model.CarId && c.Issues.Any(i => i.Id == model.IssueId))
-                .FirstOrDefault();
-
-
-            var issue = this.data
-                .Issues
-                .Where(i => i.Id == model.IssueId && i.CarId == model.CarId)
-                .FirstOrDefault();
+          var issue = this.data
+                  .Issues
+                   .Find(model.IssueId);
 
             //if issue == null
 

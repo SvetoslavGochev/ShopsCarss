@@ -32,9 +32,9 @@
                                     <td>
                                         @if (@issue.IsFixed)
                                         {
-                                            <span>Not yet</span>
+                                            <span>yet</span>
                                         }
-                                        @if (@issue.IsFixed)
+                                        @if (!@issue.IsFixed)
                                         {
                                             <span>Not yet</span>
                                         }
