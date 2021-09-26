@@ -50,15 +50,16 @@
 
         public async Task Create(AddissueFormModel model)
         {
-            var issue = new Issue
-            {
-                CarId = model.CarId,
-                Description = model.Description,
-                IsFixed = true
-            };
 
             await this.data.
-                Issues.AddAsync(issue);
+                Issues.
+                AddAsync(new Issue
+                {
+                    CarId = model.CarId,
+                    Description = model.Description,
+                    IsFixed = true
+                });
+
             await this.data
                 .SaveChangesAsync();
         }

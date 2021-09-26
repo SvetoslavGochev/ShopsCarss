@@ -43,7 +43,7 @@
         {
             await this.issues.Create(model);
 
-            return RedirectToAction();
+            return RedirectToAction($"/Issues/Carissues?carid={model.CarId}");
         }
     }
 }
