@@ -8,6 +8,8 @@
         public string Model { get; set; }
         public int Year { get; set; }
 
+        public bool IsFixed { get; set; }
+
         public IEnumerable<IssueListenigViewModel> Issues { get; set; }
     }
 }

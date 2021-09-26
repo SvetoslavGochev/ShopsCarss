@@ -6,8 +6,10 @@
 
     public interface IIssuesServices
     {
-        CarIssuesViewModel All(int id);
+        Task<CarIssuesViewModel> All(int id);
 
         Task Create(AddissueFormModel model);
+
+        Task Fix(FixIssueModel model);
     }
 }

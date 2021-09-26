@@ -30,11 +30,11 @@
                                 <tr class="table-light">
                                     <td>@issue.Description</td>
                                     <td>
-                                        @if (Model.IsFixed)
+                                        @if (@issue.IsFixed)
                                         {
                                             <span>Not yet</span>
                                         }
-                                        @if (!Model.IsFixed)
+                                        @if (@issue.IsFixed)
                                         {
                                             <span>Not yet</span>
                                         }

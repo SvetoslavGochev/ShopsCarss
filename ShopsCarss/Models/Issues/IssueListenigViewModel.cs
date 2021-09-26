@@ -3,7 +3,7 @@
 
     public class IssueListenigViewModel
     {
-        public int IssueId { get; set; }
+        public int Id { get; set; }
         public string Description { get; set; }
                       
         public bool IsFixed { get; set; }

@@ -22,9 +22,9 @@
         {
             //if usaer is mehanik
 
-            var a = this.issues.All(CarId);
+            var a = await this.issues.All(CarId);
 
-            return View(this.issues.All(CarId));
+            return View(await this.issues.All(CarId));
         }
 
         [HttpGet]
@@ -43,7 +43,18 @@
         {
             await this.issues.Create(model);
 
-            return RedirectToAction($"/Issues/Carissues?carid={model.CarId}");
+            //return Redirect($"/Issues/CarIssues?carId={model.CarId}");
+         
+         return   Redirect($"{nameof(CarIssues)}?carId={model.CarId}");
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Fix(FixIssueModel model)
+        {
+            await this.issues.Fix(model);
+
+            return RedirectToAction(nameof(CarIssues));
         }
     }
 }
